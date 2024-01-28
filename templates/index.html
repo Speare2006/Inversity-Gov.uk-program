@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gov.uk Definer</title>
+    <style>
+
+
+        .normal-text {
+            font-size: 16px; /* Normal text placeholder so it can be highlighted */
+
+        }
+
+/* This turns the mouse cursor into a pointer when it hovers over the blue text, to mimic the real website */
+
+        .blue-text {       
+            color: blue;
+            cursor: pointer;
+            transition: color 0.3s ease; /* Hover effect transition */
+            text-decoration: underline;
+
+        }
+
+        .blue-text:hover {
+            color: darkblue; /* Sets the colour of the blue text when the mouse hovers over it, to further mimic the real website */
+        }
+
+
+        .black-bold {
+            color: black;
+            font-weight: bold; /* Colour of webpage headers */
+        }
+
+        .definition {
+            font-weight: bold;  /* Colour of definition text */
+            color: blue;
+        }
+ 
+        .highlight {
+            background-color: yellow;
+            animation: highlight 1.5s ease; /* Highlight animation, making the yellow background flash and become transparent before disappearing */
+        }
+
+        @keyframes highlight {
+            from {
+                background-color: yellow;
+            }
+            to {
+                background-color: transparent;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="errorMessageContainer"></div>
+    <!-- This paragraph contains excerpts taken from gov.uk pages, this provides an example of how the program would work on the website -->
+    <p id="paragraphContent">
+    
+    <br>This is an excerpt taken from https://www.gov.uk/browse/benefits/looking-for-work
+    <br><br>
+    <span class="black-bold">Find out what you could get:</span>
+    <ul>
+        <li><span class="blue-text">Benefits calculators</span></li>
+        <li><span class="blue-text">Check benefits and financial support you can get</span></li>
+    </ul>
+
+    <span class="black-bold">Benefits and Financial support:</span>
+    <ul>
+        <li><span class="blue-text">Jobseeker's Allowance (JSA)</span></li>
+        <li><span class="blue-text">Universal Credit</span></li>
+        <li><span class="blue-text">Pension Credit</span></li>
+    </ul>
+
+    <span class="black-bold">Other support:</span><br><br>
+        <li><span class="blue-text">Being made redundant: finding work, claiming benefits and managing debts</span></li>
+        <li><span class="blue-text">Find a job</span></li>
+        <li><span class="blue-text">Help with moving from benefits to work</span></li>
+        <li><span class="blue-text">Work and Health Programme</span></li>
+        <li><span class="blue-text">Apply for communication support at a job interview if you have a disability or health condition (Access to Work)</span></li>
+        <li><span class="blue-text">Access to Work: get support if you have a disability or health condition</span></li>
+        <li><span class="blue-text">Get help with savings if you’re on a low income (Help to Save)</span></li>
+        <li><span class="blue-text">Budgeting Loans</span></li>
+        <li><span class="blue-text">Support visits if you need help to claim benefits</span></li>
+    </ul>
+
+    <hr><!-- Horizontal Line -->
+        <br>This is an excerpt taken from https://www.gov.uk/support-child-or-partners-student-finance-application
+        <br><br>
+        <span class="black-bold">Support your child or partner's student finance application:</span><br><br>
+    
+    <span class="normal-text">Contents:</span>
+    <ul>
+        <li><span class="normal-text">Give details of your household income</span></li>
+        <li><span class="blue-text">If your income has gone down</span></li>
+        <li><span class="blue-text">If you need to update your details</span></li>
+    </ul>
+
+    <span class="black-bold">Give details of your household income:</span><br>
+    <ul>
+        <li><span class="normal-text">You may be asked for information about your household income if your child or partner has applied for student finance in England.</span></li>
+        <li><span class="normal-text">Your information will be used to work out if your child or partner can get extra money on top of the Tuition Fee Loan and the basic Maintenance Loan.</span></li>
+        <li><span class="normal-text">If you do not share information about your household income, your child or partner will only get the minimum amount of student finance.</span></li>
+        <li><span class="normal-text">There’s a different process if your child or partner is applying in Scotland, applying in Wales, or applying in Northern Ireland.</span></li>
+    </ul>
+
+    <span class="black-bold">Create an account or sign in:</span><br>
+    <ul>
+        <li><span class="normal-text">After your child or partner applies, you’ll get an email from Student Finance England (SFE) within 24 hours.</span></li>
+        <li><span class="normal-text">You’ll need to wait for the email before you create a student finance account or sign in. You cannot use the same account as your child or partner.</span></li>
+        <li><span class="normal-text">If you’ve had student finance or supported an application before, you’ll need to sign in to your student finance account. You can reset your login details if you’ve forgotten them.</span></li>
+    </ul>
+
+    <span class="black-bold">What information you’ll need:</span><br>
+    <ul>
+        <li><span class="normal-text">You’ll be asked for your National Insurance number once you’ve signed in. SFE will use this to get information about your income from the previous tax year from HM Revenue and Customs (HMRC).</span></li>
+        <li><span class="normal-text">You’ll also need to say if you have:</span></li>
+        <ul>
+            <li><span class="normal-text">Paid into private pensions</span></li>
+            <li><span class="normal-text">Made additional voluntary contributions</span></li>
+            <li><span class="normal-text">Children (other than the student) who depend on you financially</span></li>
+        </ul>
+        <li><span class="normal-text">If you do not have a National Insurance number, you’ll need to complete a form and provide evidence to show how much you earned.</span></li>
+        <li><span class="normal-text">If your income has gone down by at least 15% since the relevant tax year, you can apply for a current year income assessment instead. You must still give details of the year SFE has asked you about.</span></li>
+    </ul>
+
+    <span class="black-bold">What happens next:</span><br>
+    <ul>
+        <li><span class="normal-text">SFE will write to your child or partner when all your information has been confirmed. They cannot share details of the loan with you without your child or partner’s consent.</span></li>
+        <li><span class="normal-text">If your information is still being processed when your child or partner starts their course, they’ll still get the Tuition Fee Loan and the basic Maintenance Loan (if they’re eligible).</span></li>
+    </ul>
+
+    <span class="black-bold">Supporting a continuing student:</span><br>
+    <ul>
+        <li><span class="normal-text">Your child or partner needs to apply for student finance each year.</span></li>
+        <li><span class="normal-text">When they apply, you’ll get an email within 24 hours. The email will have a link to sign in to your account, where you must give:</span></li>
+        <ul>
+            <li><span class="normal-text">Your marital status</span></li>
+            <li><span class="normal-text">Any changes to the information you provided the previous year</span></li>
+            <li><span class="normal-text">Details of any private pensions, additional voluntary contributions, and other child dependents</span></li>
+        </ul>
+    </ul>
+
+    <span class="black-bold">If you gave income details for the current tax year:</span><br>
+    <ul>
+        <li><span class="normal-text">You can use the same income details that you provided last year.</span></li>
+        <li><span class="normal-text">If your income has dropped by at least 15% again, you can send in a new current tax year income assessment form.</span></li>
+    </ul>
+
+    <hr><!-- Horizontal Line -->
+    <br>This is an excerpt taken from https://www.gov.uk/check-your-business-protected-area
+    <br><br> 
+
+    <div id="styledTextContainer">
+        <p class="black-bold">Find protected areas of countryside</p>
+        <p class="normal-text">Nature sites and areas of countryside can be ‘designated’, which means they have special status as protected areas because of their natural and cultural importance.</p>
+
+        <div class="normal-text">
+            <p>Protection means that these places:</p>
+            <ul>
+                <li>have clear boundaries</li>
+                <li>have people and laws to make sure that the nature and wildlife are not harmed or destroyed</li>
+                <li>can sometimes be used by people for recreation and study</li>
+            </ul>
+        </div>
+
+        <p class="normal-text">Places are made into protected areas by:</p>
+        <ul class="normal-text">
+            <li>organisations, such as Natural England</li>
+            <li>local councils and bylaws</li>
+            <li>national and international laws and organisations, such as the International Union for Conservation of Nature (IUCN)</li>
+        </ul>
+
+        <p class="normal-text">There are restrictions on activities and developments that might affect a designated or protected area, for example building new houses or roads. This includes areas next to as well as in those areas.</p>
+
+        <p class="black-bold">Search for protected areas</p>
+        <p class="normal-text">Check if your home or business is next to:</p>
+        <ul class="normal-text">
+            <li><span class="blue-text">a protected area in England</span></li>
+            <li><span class="blue-text">a protected area in Wales</span></li>
+            <li><span class="blue-text">a protected area in Scotland</span></li>
+            <li><span class="blue-text">a protected area in Northern Ireland</span></li>
+        </ul>
+
+        <p class="normal-text">You can find different kinds of protected areas, for example wetland sites, national parks, or special scientific sites, across the UK, including:</p>
+
+        <ul class="blue-text">
+            <li>National Parks and Areas of Outstanding Natural Beauty</li>
+            <li>Marine Conservation Zones</li>
+            <li>Sites of Special Scientific Interest</li>
+            <li>Special Areas of Conservation</li>
+            <li>Special Protection Areas</li>
+            <li>Ramsar wetland sites</li>
+        </ul>
+
+        <p class="black-bold">Check if protected area restrictions apply</p>
+        <p class="normal-text">Contact your local council to find out what restrictions apply to your business or home.</p>
+        <p class="normal-text">You might need to do certain things if you’re opening a new business or building a home that may affect a protected area, such as:</p>
+
+        <ul class="normal-text">
+            <li>get permission from the <span class="blue-text">local council</span> and Natural England</li>
+            <li>carry out an ecological survey, for example, a survey of local wildlife to find out if there are any protected species that might be affected</li>
+            <li>carry out an <span class="blue-text">Environmental Impact Assessment (EIA)</span></li>
+        </ul>
+
+        <p class="normal-text">EIAs can be different in Scotland, Wales, and Northern Ireland.</p>
+
+        <p class="normal-text">Find out more about:</p>
+
+        <ul class="blue-text">
+            <li><span class="blue-text">EIAs in Scotland</span></li>
+            <li><span class="blue-text">EIAs in Wales</span></li>
+            <li><span class="blue-text">EIAs in Northern Ireland</span></li>
+        </ul>
+
+        <p class="black-bold">Newly designated areas</p>
+        <p class="normal-text">You’ll be contacted by the local council, the Environment Agency, or Natural England about any new restrictions if your business affects a newly designated area.</p>
+
+        <p class="black-bold">Explore the topic</p>
+        <ul class="blue-text">
+            <li><span class="blue-text">Countryside</span></li>
+            <li><span class="blue-text">Wildlife and biodiversity</span></li>
+        </ul>
+    </div>
+    <hr><!-- Horizontal Line -->
+       <br>This is an excerpt taken from https://www.gov.uk/check-mot-history
+        <br><br>
+
+        <p class="black-bold">Check the MOT history of a vehicle</p>
+        <p class="normal-text">Check the past results of a vehicle’s MOT tests, including:</p>
+        <ul class="normal-text">
+          <li>- if it passed or failed</li>
+          <li>- the mileage recorded when it was tested</li>
+        </ul>
+        <p class="normal-text">You can also:</p>
+        <ul class="normal-text">
+          <li>- check when the next MOT is due</li>
+          <li>- <span class="blue-text">download a copy of the current and previous MOT certificates</span></li>
+        </ul>
+
+        <p class="black-bold">If you got your test in England, Scotland, or Wales</p>
+        <p class="normal-text">You’ll also be able to see:</p>
+        <ul class="normal-text">
+          <li>- where each test was done - you’ll need the 11-digit number from the vehicle’s log book (V5C)</li>
+          <li>- what parts failed at each test, and if any parts had minor problems</li>
+        </ul>
+        <p class="normal-text">For cars, motorcycles, and vans, you can only get results for tests done since 2005.</p>
+        <p class="normal-text">For HGVs, trailers, buses, and coaches, you can only get results for tests done since 2018.</p>
+
+        <p class="black-bold">If you got your test in Northern Ireland</p>
+        <p class="normal-text">You can only get results for tests done since 2017.</p>
+
+        <p class="black-bold">Check a vehicle’s MOT history</p>
+        <p class="normal-text">You’ll need the vehicle’s number plate (registration number).</p>
+
+  </p>
+
+    <script>
+
+       // Will be used if there's an error while trying to get a definition
+       function displayErrorMessage(message) {
+            const errorMessageContainer = document.getElementById('errorMessageContainer');
+            errorMessageContainer.innerHTML = `<p style="color: red;">Error: ${message}</p>`;
+
+            // Removes the error message after 5 seconds
+            setTimeout(() => {
+                errorMessageContainer.innerHTML = '';
+            }, 5000);
+        }
+
+
+        // This function fetches a dictionary API, this will define words that don't appear in the below list
+        async function fetchWordnikDefinition(word) {
+            const apiKey = '7hc16iwy2kb2djjtfx7l3i93p6oe8ebdmzhx9cfjqfwrez6ey'; // This is a Wordnik Dictionary API key
+            const apiUrl = `https://api.wordnik.com/v4/word.json/${word}/definitions?limit=1&api_key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (response.status === 404) {
+                    console.error(`Wordnik API error: Definition not found for word '${word}'.`);
+                    throw new Error('Definition not found for given word.') // If an error occurs, this message will appear
+                }
+
+                const data = await response.json();
+
+                if (data && data.length > 0) {
+                    return data[0].text;
+                } else {
+                    throw new Error('Error fetching definition, try highlighting a single word/phrase.'); // If the user doesn't highlight correctly, this message will appear
+                }
+            } catch (error) {
+                console.error('Error fetching Wordnik definition:', error.message);
+                displayErrorMessage('Sorry, the definition couldn\'t be retrieved, try clicking Read more for info.'); // If there is no definition, this message will appear
+            }
+        }
+
+
+        // This defines the key inputs the user will have to make to define a word - hold ctrl key down, use mouse to highlight, release ctrl key
+
+        let isCtrlPressed = false;
+        const paragraphContent = document.getElementById('paragraphContent');
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Control') {
+                isCtrlPressed = true;
+            }
+        });
+
+        document.addEventListener('keyup', function (event) {
+            if (event.key === 'Control') {
+                isCtrlPressed = false;
+            }
+        });
+
+        document.addEventListener('mouseup', function (event) {
+            let targetElement;
+
+            if (isCtrlPressed) {
+                const selectedText = window.getSelection().toString().trim();
+
+             
+                if (selectedText) {
+                    targetElement = event.target;
+                    getDefinition(selectedText, targetElement);
+                }
+            }
+        });
+
+    
+        // This is where I stored The definitions for the complex terminology found on the Gov.uk website, I would like to thank AI Tom Read, along with a few real people, for providing these.
+        // There was probably a more efficient way of doing this, but I wanted to limit any chance of errors.
+
+        const definitions = {
+            // These are the definitions of terms/phrases that are found on the gov.uk website
+            'Universal Credit': 'A type of benefit payment provided by the UK government to support individuals and families with their living costs.',
+            'Jobseeker\'s Allowance': 'A benefit payment for individuals who are actively seeking employment and meet certain eligibility criteria.',
+            'Personal Independence Payment (PIP)': 'A disability benefit that helps with the extra costs of living with a long-term health condition or disability.',
+            'Statutory Sick Pay (SSP)': 'A payment made to employees who are unable to work due to illness or injury, as mandated by law.',
+            'National Insurance': 'A system of contributions paid by workers and employers in the UK to fund state benefits, including the state pension and healthcare services.',
+            'Self-assessment': 'A process where individuals and businesses report their income and expenses to calculate and pay their own tax liabilities.',
+            'Child Tax Credit': 'A benefit payment provided to families with children to help with the costs of raising them.',
+            'Housing Benefit': 'Financial assistance provided to individuals or families who need help paying their rent.',
+            'Right to Work': 'The legal requirement for individuals to have the right to work in the UK, typically verified through immigration status and documentation.',
+            'Freedom of Information (FOI)': 'A law that gives individuals the right to access information held by public authorities, promoting transparency and accountability.',
+            'Child Maintenance': 'Financial support provided by one parent to the other for the upbringing of their child(ren) after separation or divorce.',
+            'Tiered Restrictions': 'A system categorizing different areas or regions based on the severity of COVID-19 restrictions imposed.',
+            'Pensions Auto-enrolment': 'A government initiative that requires employers to automatically enroll eligible employees into a workplace pension scheme.',
+            'State Pension': 'A regular payment made by the government to eligible individuals who have reached the qualifying age.',
+            'Inheritance Tax': 'A tax on the estate (property, money, and possessions) of someone who has passed away.',
+            'Environmental Impact Assessment (EIA)': 'An evaluation of the potential environmental effects of a proposed development project or policy.',
+            'National Minimum Wage': 'The minimum hourly rate that employers must legally pay most workers in the UK.',
+            'Freedom of Movement': 'The principle that allows citizens of European Union (EU) member states to live and work in other EU countries.',
+            'Registered Provider': 'An organization or housing association registered with the government to provide social housing.',
+            'Eligibility Criteria': 'The requirements that must be met for a person to be allowed to do or receive something.',
+            'Statutory Maternity Pay (SMP)': 'A payment made to eligible employees when they take time off work to have a baby.',
+            'Council Tax': 'A local tax levied on residential properties in the UK to fund local services provided by the council.',
+            'Registered Charity': 'An organization that has been officially recognized by the government as a charitable entity, eligible for tax benefits and subject to specific regulations.',
+            'Environment Agency': 'A government organization in the UK responsible for protecting and improving the environment.',
+            'Natural England': 'A government agency in England that focuses on the conservation and enhancement of the natural environment.', 
+            'Discretionary Housing Payment': 'Additional financial assistance provided by the local council to individuals who need help with their housing costs.',
+            'Domiciliary Care': 'Care services provided to individuals in their own homes, including assistance with daily activities and personal care.',
+            'Pensions Auto-enrolment': 'The requirement for employers to automatically enroll eligible employees into a workplace pension scheme.',
+            'Maternity Allowance': 'Financial support provided to pregnant women or new mothers who do not qualify for Statutory Maternity Pay.',
+            'International Union for Conservation of Nature (IUCN)': 'The International Union for Conservation of Nature is a global organization that works to conserve nature and promote sustainable development.',
+            'National Nature Reserves (NNRs)': 'Protected areas in the UK that are designated for their exceptional natural beauty, biodiversity, and scientific value.', 
+            'Redundancy Pay': 'Compensation provided to employees who are made redundant, based on their length of service and salary.',
+            'Universal Service Obligation': 'The requirement for certain essential services, such as postal services and broadband, to be accessible and available to all individuals within a particular jurisdiction.',
+            'Green spaces': 'Areas of land that are predominantly covered with vegetation, such as parks, gardens, forests, and other natural or landscaped areas.',
+            'Pension Credit': 'A means-tested benefit provided by the UK government to support individuals who have reached the qualifying age and have a low income.',
+            'Education Maintenance Allowance (EMA)': 'A financial allowance provided to eligible students in the UK to help with the costs of staying in education after the age of 16.',
+            'Maintenance Loan': 'A type of financial support provided to students in the UK to help cover living costs while they are studying at university or college.',
+            'Tuition Fee Loan': 'A type of financial assistance that helps students in the UK pay for their tuition fees at university or college.',
+            'Private Pension': 'Retirement savings plans that individuals can set up privately, usually through a pension provider or an employer.',
+            'HM Revenue and Customs (HMRC)': 'The UK government department responsible for collecting taxes, enforcing tax laws, and administering various social and economic policies related to taxation.',
+            'Student Finance England (SFE)': 'An organization that provides financial support to students in England to help them with the costs of higher education.',
+            'The Student Loans Company (SLC)': 'A government-owned organization that administers student loans and other financial support for higher education students',
+            'Student finance': 'The financial support and resources available to students to help cover the costs associated with higher education. It includes various forms of financial assistance, such as loans, grants, scholarships, and bursaries.',
+            'Tax Year': 'A specific period of time that is used for calculating and reporting taxes, during which individuals, businesses, and other entities must report their income and expenses and determine their tax liability.', 
+            'local council': 'A governing body that represents and serves a specific local area, such as a town, city, or district.',
+            'Marital Status': 'The legal status of a person in relation to their marriage. It indicates whether a person is single, married, divorced, widowed, or in a civil partnership.',
+            'Gross Domestic Product (GDP)': 'A measure of the total value of goods and services produced within a country\'s borders over a specific period. It is used as an indicator of a country\'s economic performance and productivity.',
+            'Carbon footprint': 'The total amount of greenhouse gases, primarily carbon dioxide, emitted directly or indirectly by an individual, organization, or product throughout its lifecycle.',
+            'Climate change': 'The long-term shifts in weather patterns and average temperatures on Earth, primarily caused by human activities such as burning fossil fuels and deforestation.',
+            'Artificial intelligence (AI)': 'The simulation of human intelligence in machines that are programmed to perform tasks that typically require human intelligence.',
+            'Renewable energy': 'Energy derived from sources that are naturally replenished and do not deplete over time, such as solar power, wind power, hydroelectric power, and geothermal energy.',
+            'Data breach': 'Occurs when unauthorized individuals gain access to sensitive or confidential information, such as personal data or financial records, without permission.',
+            'Internet of Things (IoT)': 'The network of physical devices, vehicles, appliances, and other objects embedded with sensors, software, and connectivity, allowing them to connect and exchange data.',
+            'Cloud computing': 'The delivery of computing services, including storage, servers, databases, software, and more, over the internet. It allows users to access and utilize these resources on-demand, without the need for physical infrastructure or local storage.',
+            'Machine learning': 'A subset of artificial intelligence that involves the development of algorithms and models that enable computers to learn from data and make predictions or decisions without being explicitly programmed.',
+            'Log book': 'An official document that contains important information about a vehicle.',
+            'Number plate': 'Also known as a license plate or registration plate, A unique combination of letters and numbers displayed on the front and rear of a vehicle. It serves as a means of identification for the vehicle and is registered with the relevant authorities.',
+
+            // These are words commonly used on the website that some people my find difficult to understand (according to the chatbot)
+            'Eligibility': 'Refers to meeting the requirements or criteria to qualify for a particular benefit, service, or program.',
+            'Exemption': 'Means being excluded or exempt from a requirement or obligation.',
+            'Extradition': 'The process of transferring a person from one country to another to face criminal charges or serve a sentence.',
+            'Levy': 'A tax or fee imposed by the government on individuals or organizations for specific purposes.',
+            'Discretionary': 'Refers to something that is optional or based on individual judgment rather than being mandatory.',
+            'Deductible': 'An amount of money that needs to be paid by an individual before insurance coverage or benefits kick in.',
+            'Inheritance': 'The assets, property, or money that is passed down to someone after the death of a family member or relative.',
+            'Sanction': 'Refers to a penalty or punishment imposed by the government for non-compliance with rules or regulations.',
+            'Tribunal': 'A formal legal body or court that resolves disputes or makes judgments on specific matters.',
+            'Entitlement': 'Refers to a right or claim to benefits, services, or privileges based on specific criteria or circumstances.',
+            'Expenditure': 'The act of spending money or the total amount of money spent on goods, services, or activities.',
+            'Domicile': 'Refers to the country or legal jurisdiction that a person considers their permanent home or where they have significant ties.',
+            'Redundancy': 'The situation when an employee\'s job is no longer needed, often due to business restructuring or downsizing.',
+            'Redundant': 'Having a job that is no longer needed, often due to business restructuring or downsizing. In the context of employment, it means being laid off or dismissed.',
+            'Tenure': 'Refers to the conditions or terms under which someone holds a position, such as a tenured professorship (University professor).',
+            'Breach': 'An act of breaking or violating a law, rule, contract, or agreement.',
+            'Waiver': 'The voluntary relinquishment or giving up of a right, claim, or privilege.',
+            'Injunction': 'A court order that prohibits or compels a person or entity to do or refrain from doing a specific action.',
+            'Adjudication': 'The formal process of resolving a dispute or making a decision based on evidence and arguments presented.',
+            'Residency': 'The state of living or having a permanent address in a particular place.',
+            'Quota': 'A fixed or limited number or amount of something, often used in the context of immigration or trade.',
+            'Subsidy': 'Financial assistance or support provided by the government to reduce the cost of a particular product or service.',
+            'Immigration': 'The process through which individuals become permanent residents or citizens of another country.',
+            'Grievance': 'A formal complaint or concern raised by an individual regarding an unfair or unjust treatment.',
+            'Compliance': 'The act of following or adhering to rules, regulations, or laws.',
+            'Disclosure': 'The act of making information or facts known or revealing something that was previously unknown.',
+            'Inflation': 'The rate at which the general level of prices for goods and services is rising and, subsequently, the purchasing power of currency is falling.',
+            'Apprenticeship': 'A work-based training program that combines on-the-job training with classroom instruction for individuals to learn a specific trade or skill.',
+            'Probate': 'The legal process of administering the estate of a deceased person, including the distribution of assets and settling debts.',
+            'Pension': 'A regular payment made by the state to people of or above the official retirement age and to some widows and disabled people.',
+            'Furlough': 'A temporary leave of absence or reduced working hours for employees.',
+            'Benefits': 'A form of financial assistance or support provided by the government to individuals or families who meet specific eligibility criteria.',
+            'Benefit': 'A form of financial assistance or support provided by the government to individuals or families who meet specific eligibility criteria.',
+            'Job': 'A paid position of regular employment.',
+            'Work': 'An activity that a person engages in regularly to earn a livelihood.',
+            'Credit': 'The ability of a customer to obtain goods or services before payment, based on the trust that payment will be made in the future.',
+            'College': 'An educational institution that offers a range of courses and qualifications, typically for students aged 16 and above.',
+            'Traineeship': 'A work-based learning program in the UK that combines classroom-based training with practical work experience.',
+            'Mileage': 'The total distance traveled by a vehicle, typically measured in miles or kilometers.',
+            'Bursary': 'A bursary is a financial grant or scholarship provided to individuals, often students, to support their education or training.',
+            'UCAS': 'Stands for the Universities and Colleges Admissions Service. It is the central organization in the UK responsible for managing applications to higher education institutions, including universities and colleges.',
+            'Democracy': 'A system of government in which power is vested in the people, who exercise it either directly or through elected representatives. It emphasizes the principles of equality, freedom, and the participation of citizens in decision-making processes.',
+            'Undergraduates': 'Students who are pursuing their first degree at a college or university. Typically enrolled in a bachelor\'s degree program and have not yet completed their undergraduate studies.',
+            'Postgraduates': 'Individuals who have already completed their undergraduate studies and are pursuing further education at a higher level. They are enrolled in master\'s degree programs, doctoral programs, or other advanced courses of study.', 
+            'Sustainability': 'The practice of using resources in a way that meets the needs of the present generation without compromising the ability of future generations to meet their own needs.',
+            'Cybersecurity': 'Involves the protection of computer systems, networks, and data from unauthorized access, theft, damage, or disruption.',
+            'Blockchain': 'A decentralized and distributed digital ledger that records transactions across multiple computers.',
+            'Cyberbullying': 'The use of electronic communication, such as social media platforms or messaging apps, to harass, intimidate, or harm others.',
+            'Cryptocurrency': 'A digital or virtual form of currency that uses cryptography for secure financial transactions, control the creation of new units, and verify the transfer of assets.',
+            'MOT': 'Stands for Ministry of Transport - a mandatory annual test that vehicles over a certain age must undergo to ensure they meet the required safety and environmental standards.',
+            'HGV': 'Stands for Heavy Goods Vehicle. It refers to a large commercial vehicle used for transporting goods.',
+            'Trailer': 'A vehicle without an engine that is towed by another vehicle, such as a car or truck.',
+            
+        };
+
+
+        // This is where the program will find the definition of the highlighted text and, if found in the above list, will display it at the top of the screen
+
+/* Before using the listed definitions, I tried just using the Wordnik dictionary API key, but it could only define basic words and gave simple definitions, and for some words it gives very strange definitions (e.g., the definition for 'man' is apparently: 'A measure of weight in Persia, varying in value, in different localities, from about 6 to about 25 pounds.' and the definition for 'or' is: 'Gold, represented in heraldic engraving by a white field sprinkled with small dots.')
+maybe with a better API key it would be more useful, but for now it will do. It will only be used as a last resort anyway. */
+
+         async function getDefinition(selectedText, targetElement) {
+            if (selectedText) {
+                const lowerCaseWord = selectedText.toLowerCase();
+
+                try {
+                    // Check for definition in local definitions (case-insensitive)
+                    const matchingDefinition = Object.keys(definitions).find(
+                        key => key.toLowerCase() === lowerCaseWord
+                    );
+
+                    if (matchingDefinition) {
+                        highlightAndShowDefinition(definitions[matchingDefinition], selectedText, targetElement);
+                        scrollToTop();
+
+                    } else {
+                        // If not found in local definitions, try fetching from Wordnik API
+                        const wordnikDefinition = await fetchWordnikDefinition(lowerCaseWord);
+                        if (wordnikDefinition !== 'undefined') {
+                            highlightAndShowDefinition(wordnikDefinition, selectedText, targetElement);
+                            scrollToTop();
+                        } else {
+                            displayErrorMessage('Definition not found');
+                        }
+                }
+
+                function scrollToTop() {
+                    // Scrolls to the top of the page when the user defines something
+                    window.scrollTo({
+                        top: 0,
+                        behaviour: 'smooth'
+                    });
+                }
+
+
+                } catch (error) {
+                    console.error('Error fetching definition:', error.message);
+                    displayErrorMessage('Sorry, there was an error while retrieving the definition.'); 
+                }
+            }
+        }
+
+
+
+        // If it's a term, the link will direct the user to it's Gov.uk page, and the spaces will be replaced with '-'
+           
+/* Originally, I was going to make the program check if the term has it's own page - if it detects a 404 error on the webpage, then there is no page for that term and it will re-direct to the search Url you see below, but i couldn't do it as the Gov.uk website blocks any cross-origin requests from localhost servers. So for now, only single words will be instersted into the search Url and some highlighted terms may not lead to a page. */
+        
+        function generateReadMoreLink(term) {
+            const cleanedTerm = term.replace(/'/g, '').replace(/\([^)]*\)/g, '').toLowerCase();
+
+            const linkText = `Read more on Gov.uk (page may not be available for all ${cleanedTerm.split(' ').length > 1 ? 'terms' : 'words'})`;
+
+            if (cleanedTerm.split(' ').length > 1) {
+                const formattedTermForGovUKPage = cleanedTerm.split(' ').join('-');
+                const govUKPageUrl = 'https://www.gov.uk/' + formattedTermForGovUKPage;
+                return `<br><a href="${govUKPageUrl}" target="_blank">${linkText}</a>`;
+
+            } else {   // If it's a single word, the 'Read more' link will change to this one, directing the user to a Gov.uk search page for that word
+                const searchUrl = 'https://www.gov.uk/search/all?keywords=' + cleanedTerm + '&order=relevance';
+                return '<br><a href="' + searchUrl + '" target="_blank">' + linkText + '</a>';
+            }
+        }
+
+
+ // This will highlight the selected word and show the defintion in blue, bold text at the top of the screen 
+    // Also, since it's not very obvious, you can also highlight and define words that are in the definition itself - if you really need to
+
+        function highlightAndShowDefinition(definition, term, targetElement) {
+            const existingDefinition = document.querySelector('.definition');
+            if (existingDefinition) {
+                existingDefinition.remove(); // Deletes the existing definition
+            }
+
+            if (targetElement) {
+                targetElement.classList.add('highlight'); // Highlights the line
+            }
+
+            const definitionElement = document.createElement('p');
+            definitionElement.classList.add('definition');
+
+            definitionElement.innerHTML = `Definition: ${definition}`;
+            const singularTerm = term.endsWith('s') ? term.slice(0, -1) : term;  // Makes the term singular if it isn't already
+            const readMoreLink = generateReadMoreLink(singularTerm);
+
+            definitionElement.innerHTML += readMoreLink; // Appends the 'Read more' link to the definition
+
+            paragraphContent.insertBefore(definitionElement, paragraphContent.firstChild);
+
+            setTimeout(() => {
+                if (targetElement) {
+            targetElement.classList.remove('highlight'); // Removes highlight after 3 seconds
+        }
+    }, 3000);
+}
+
+ </script>
+</body>
+
+</html> 

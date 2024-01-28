@@ -1,0 +1,32 @@
+Here's my solution to the issue of language complexity and content navigation that persists on the Gov.uk website
+
+The HTML file is a webpage that contains excerpts from various Gov.uk pages, providing an example of how the definer function will work
+
+
+
+You may need to have Node.js installed to run the program on your local machine to run the file:
+
+1. **Install Node.js:
+
+    Ensure you have Node.js installed on your machine. If not, you can download it from [https://nodejs.org/](https://nodejs.org/).
+
+2. **Install the required Node.js modules:
+
+    ```bash
+    npm install
+    ```
+
+3. **install the Node.js server:
+
+    ```bash
+    npm install -g http-server
+    ```
+
+4. **After installment, navigate to the file directory and enter:
+
+    ```bash
+    http-server
+    ```
+
+
+4. Open your web browser and go to (http://localhost:8080/) to view the program. (Actual port number may vary)
